@@ -68,9 +68,9 @@ read_file_1:
 	
 #open file
 	li a7, 1024
-        	la a0, fname_1	#file name 
-        	li a1, 0		# flags: 0-read file
-        	ecall
+        la a0, fname_1	#file name 
+        li a1, 0	# flags: 0-read file
+        ecall
 	mv s1, a0      	# save_file the file descriptor
 
 #read file
@@ -109,9 +109,9 @@ read_file_2:
 	
 #open file
 	li a7, 1024
-        	la a0, fname_2	#file name 
-        	li a1, 0		#flags: 0-read file
-        	ecall
+        la a0, fname_2	#file name 
+        li a1, 0	#flags: 0-read file
+	ecall
 	mv s1, a0      	# save_file the file descriptor
 
 #read file
@@ -144,7 +144,7 @@ read_file_2:
 close_read_file:
 	li a7, 57
 	mv a0, s1
-          ecall
+        ecall
 	
 	lw s1, 0(sp)	#restore s1
 	addi sp, sp, 4
@@ -158,9 +158,9 @@ save_file_1:
 	sw s1, (sp)
 #open file
 	li a7, 1024
-        	la a0, fname_1	# file name 
-        	li a1, 1		# flags: 1-write file
-        	ecall
+        la a0, fname_1	# file name 
+        li a1, 1	# flags: 1-write file
+	ecall
 	mv s1, a0      	# save_file the file descriptor
 
 #save file
@@ -191,9 +191,9 @@ save_file_2:
 	sw s1, (sp)
 #open file
 	li a7, 1024
-        	la a0, fname_2	#file name 
-        	li a1, 1		#flags: 1-write file
-        	ecall
+        la a0, fname_2	#file name 
+        li a1, 1	#flags: 1-write file
+        ecall
 	mv s1, a0      	# save_file the file descriptor
 
 #save file
@@ -220,7 +220,7 @@ save_file_2:
 close_saved_file:
 	li a7, 57
 	mv a0, s1
-          ecall
+        ecall
 	
 	lw s1, (sp)		#restore (pop) $s1
 	addi sp, sp, 4
@@ -305,10 +305,10 @@ get_pixel:
 	slli t1,t1,8
 	or a0, a0, t1
 	lbu t1,2(t2)	# load R
-          slli t1,t1,16
+        slli t1,t1,16
 	or a0, a0, t1
 	lbu t1,3(t2)	# load alpha
-          slli t1,t1,24
+        slli t1,t1,24
 	or a0, a0, t1
 					
 	jr ra
